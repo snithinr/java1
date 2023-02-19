@@ -1,0 +1,109 @@
+Set 3 :
+1.	Write a program to demonstrate the task of overloading of constructors.
+Sample Answer: 
+  package com.cvr.labprograms;
+
+class Student {
+    private String name;
+    private int age;
+    private String department;
+
+    // Constructor with no parameters
+    public Student() {
+        name = "Unknown";
+        age = 0;
+        department = "Undeclared";
+    }
+
+    // Constructor with one parameter
+    public Student(String name) {
+        this.name = name;
+        age = 0;
+        department = "Undeclared";
+    }
+
+    // Constructor with two parameters
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+        department = "Undeclared";
+    }
+
+    // Constructor with three parameters
+    public Student(String name, int age, String department) {
+        this.name = name;
+        this.age = age;
+        this.department = department;
+    }
+
+    // Method to display student information
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Department: " + department);
+    }
+}
+
+public class ConstructorOverloadingDemo {
+    public static void main(String[] args) {
+        // Creating objects using different constructors
+        Student s1 = new Student();
+        Student s2 = new Student("John");
+        Student s3 = new Student("Jane", 20);
+        Student s4 = new Student("Bob", 25, "Computer Science");
+
+        // Displaying student information
+        s1.display();
+        s2.display();
+        s3.display();
+        s4.display();
+    }
+}
+
+2.	Write a Java Program that displays the number of characters, lines and  words in a text file.
+
+Sample Answer :
+package com.cvr.labprograms;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class TextFileReader {
+    public static void main(String[] args) {
+        // Specify the file path
+        String filePath = "textfile.txt";
+
+        try {
+            // Create a BufferedReader object to read the file
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+            // Initialize counters
+            int numChars = 0;
+            int numLines = 0;
+            int numWords = 0;
+
+            // Read each line of the file
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Increment the line counter
+                numLines++;
+
+                // Split the line into words
+                String[] words = line.split("\\s+");
+
+                // Increment the word and character counters
+                numWords += words.length;
+                numChars += line.length();
+            }
+            // Close the reader
+            reader.close();
+
+            // Display the results
+            System.out.println("Number of characters: " + numChars);
+            System.out.println("Number of lines: " + numLines);
+            System.out.println("Number of words: " + numWords);
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+        }
+    }
+}

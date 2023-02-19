@@ -1,0 +1,104 @@
+Set 4 : 
+
+1.	With a well-written program demonstrate the usage of―this keyword and there by understand the implications of using same identifier for fields and parameters.
+
+Sample Answer : 
+package com.cvr.labprograms;
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        // Use "this" to refer to the fields of the current object
+        this.name = name;
+        this.age = age;
+    }
+
+    public void setName(String name) {
+        // Use "this" to disambiguate between the "name" parameter and the "name" field
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        // Use "this" to disambiguate between the "age" parameter and the "age" field
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+	
+
+public class ThisKeyWordDemo {
+    public static void main(String[] args) {
+        // Create a new Person object
+        Person person = new Person("Alice", 25);
+
+        // Get the person's name and age
+        String name = person.getName();
+        int age = person.getAge();
+
+        // Print the person's name and age
+        System.out.println(name + " is " + age + " years old");
+
+        // Set the person's name and age
+        person.setName("Bob");
+        person.setAge(30);
+
+        // Get the person's new name and age
+        String newName = person.getName();
+        int newAge = person.getAge();
+
+        // Print the person's new name and age
+        System.out.println(newName + " is " + newAge + " years old");
+    }
+}
+2.	Write a java program that demonstrates chaining the exceptions.
+
+Sample Answer
+
+Chaining exceptions in Java is the process of wrapping an existing exception (the cause) in a new exception, and then throwing the new exception with the original cause attached. This is done using the constructor of the new exception, which takes two arguments: a message describing the new exception, and the original exception that caused it.
+Chaining exceptions is useful in situations where an exception occurs deep in the call stack, but the immediate caller may not have enough information to handle it correctly. By wrapping the original exception in a new one and propagating it up the call stack, we can provide more context about the error and preserve the original stack trace. This makes it easier to diagnose and fix issues in our code.
+For example, suppose we have a method doSomeTask() that calls another method doSubtask(), which in turn calls a third method doLowLevelTask(). If an exception occurs in doLowLevelTask(), it may not make sense for doSubtask() or doSomeTask() to handle it directly. Instead, we can catch the exception in doLowLevelTask(), wrap it in a new exception, and throw the new exception with the cause attached. This allows the exception to propagate up the call stack until it is caught by an appropriate handler.
+package com.cvr.labprograms;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class ChainedExceptionDemo {
+    public static void main(String[] args) {
+        try {
+            // Call a method that throws an IOException
+            readFile("nonexistent_file.txt");
+        } catch (FileReadException e) {
+            // Catch the custom exception that wraps the IOException
+            System.out.println("Failed to read file: " + e.getMessage());
+            System.out.println("Cause: " + e.getCause());
+        }
+    }
+
+ public static void readFile(String filename) throws FileReadException {
+        try {
+            // Attempt to read the file
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line = reader.readLine();
+            System.out.println("Read line: " + line);
+            reader.close();
+        } catch (IOException e) {
+            // If an IOException occurs, wrap it in a custom exception and re-throw it
+            throw new FileReadException("Error reading file: " + e.getMessage(), e);
+        }
+    }
+}
+
+class FileReadException extends Exception {
+    public FileReadException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}

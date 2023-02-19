@@ -1,0 +1,61 @@
+Set 13:
+1.	Write a java program which shows the concept of interface extension.
+
+Sample Answer 
+package com.cvr.labprograms;
+interface Printable {
+    void print();
+}
+
+interface Showable extends Printable {
+    void show();
+}
+
+class MyClass implements Showable {
+    public void print() {
+        System.out.println("Printing...");
+    }
+
+    public void show() {
+        System.out.println("Showing...");
+    }
+}
+
+public class InterfaceExtensionDemo {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.print();
+        obj.show();
+    }
+}
+
+2.	Using byte streams, write a program to both read from and write to files
+Sample answer : 
+package com.cvr.labprograms;
+import java.io.*;
+
+public class ByteStreamsDemo {
+    public static void main(String[] args) {
+        // Write to file using OutputStream
+        try (OutputStream os = new FileOutputStream("output.txt")) {
+            String str = "Hello, World!";
+            byte[] bytes = str.getBytes();
+            os.write(bytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        // Read from file using InputStream
+        try (InputStream is = new FileInputStream("output.txt")) {
+            byte[] buffer = new byte[1024];
+            int bytesRead = is.read(buffer);
+            String str = new String(buffer, 0, bytesRead);
+            System.out.println(str);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+

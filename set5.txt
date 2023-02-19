@@ -1,0 +1,77 @@
+Set 5 : 
+
+1.	Write a java program to print the minimum and maximum values of integer and float types. Use the constants available in the wrapper classes. And also demonstrate the usage of some important methods in wrapper class .
+
+Sample answer: 
+
+package com.cvr.labprograms;
+public class WrapperDemo {
+    public static void main(String[] args) {
+        // Print the minimum and maximum values of integer and float types
+        System.out.println("Minimum value of Integer: " + Integer.MIN_VALUE);
+        System.out.println("Maximum value of Integer: " + Integer.MAX_VALUE);
+        System.out.println("Minimum value of Float: " + Float.MIN_VALUE);
+        System.out.println("Maximum value of Float: " + Float.MAX_VALUE);
+
+        // Demonstrate the usage of other methods in wrapper classes
+        Integer i = Integer.valueOf("123"); // Convert a string to an integer
+        System.out.println("i = " + i);
+
+        Float f = Float.parseFloat("3.14"); // Convert a string to a float
+        System.out.println("f = " + f);
+
+        Integer j = Integer.valueOf("abc"); // Throws NumberFormatException
+        System.out.println("j = " + j); // This line will not execute
+
+        // Demonstrate autoboxing and unboxing
+        Integer x = 10; // autoboxing
+        int y = x; // unboxing
+        System.out.println("x = " + x + ", y = " + y);
+
+        // Demonstrate equality comparison
+        Integer a = 10;
+        Integer b = 10;
+        System.out.println("a == b: " + (a == b)); // true, due to integer caching
+
+        Integer c = 128;
+        Integer d = 128;
+        System.out.println("c == d: " + (c == d)); // false, outside of integer caching range
+    }
+}
+
+
+
+
+
+
+
+2.	Write programs to illustrate the use of Thread class and Runnable interface . 
+
+
+Sample Answer  a :
+
+package com.cvr.labprograms;
+public class ThreadClassExample1 extends Thread {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+
+    public static void main(String[] args) {
+        ThreadClassExample1 thread = new ThreadClassExample1();
+        thread.start();
+    }
+}
+              Sample answer b : 
+
+package com.cvr.labprograms;
+public class RunnableIntefaceEx2 implements Runnable {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+
+    public static void main(String[] args) {
+        Thread thread = new Thread(new RunnableIntefaceEx2());
+        thread.start();
+    }
+}
+

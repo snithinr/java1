@@ -1,0 +1,62 @@
+Set 15 :
+1.	Write a program to demonstrate the command-line arguments.
+
+Sample answer : 
+package com.cvr.labprograms;
+public class CommandLineArgsDemo {
+    public static void main(String[] args) {
+        // Check if there are any command-line arguments
+        if (args.length == 0) {
+            System.out.println("No arguments provided.");
+        } else {
+            // Print the arguments
+            System.out.println("The following arguments were provided:");
+            for (int i = 0; i < args.length; i++) {
+                System.out.println(args[i]);
+            }
+        }
+    }
+}
+
+2.	Write a java  program that demonstrates the usage of the @Override, @FunctionalInterface, and @Deprecated annotations in Java
+Sample Answer : 
+
+package com.cvr.labprograms;
+
+public class AnnotationExample {
+
+    public static void main(String[] args) {
+        // call the methods
+        new AnnotationExample().methodA();
+        new AnnotationExample().methodB();
+        new AnnotationExample().methodC();
+    }
+
+    // example of @Override annotation
+    @Override
+    public String toString() {
+        return "This is an example object";
+    }
+
+    // example of @FunctionalInterface annotation
+    @FunctionalInterface
+    interface MathOperation {
+        int operation(int a, int b);
+    }
+
+    public void methodA() {
+        MathOperation addition = (a, b) -> a + b;
+        System.out.println("The sum of 2 and 3 is: " + addition.operation(2, 3));
+    }
+
+    public void methodB() {
+        MathOperation subtraction = (a, b) -> a - b;
+        System.out.println("The difference between 5 and 2 is: " + subtraction.operation(5, 2));
+    }
+
+    // example of @Deprecated annotation
+    @Deprecated
+    public void methodC() {
+        System.out.println("This method is deprecated and will be removed in a future release.");
+    }
+}

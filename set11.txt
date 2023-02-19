@@ -1,0 +1,100 @@
+Set 11 : 
+1.	Demonstrate the use of abstract classes. Write a Person abstract class and then subclass that into Student and Faculty classes. Use appropriate fields and methods.
+Sample Answer : 
+
+package com.cvr.labprograms;
+abstract class Person2 {
+    private String name;
+    private int age;
+    private String gender;
+
+    public Person2(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    public abstract void displayInfo();
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+}
+
+class Student2 extends Person2 {
+    private String studentId;
+    private String major;
+
+    public Student2(String name, int age, String gender, String studentId, String major) {
+        super(name, age, gender);
+        this.studentId = studentId;
+        this.major = major;
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + getName());
+        System.out.println("Age: " + getAge());
+        System.out.println("Gender: " + getGender());
+        System.out.println("Student ID: " + studentId);
+        System.out.println("Major: " + major);
+    }
+}
+
+class Faculty2 extends Person2 {
+    private String facultyId;
+    private String department;
+
+    public Faculty2(String name, int age, String gender, String facultyId, String department) {
+        super(name, age, gender);
+        this.facultyId = facultyId;
+        this.department = department;
+    }
+    public void displayInfo() {
+        System.out.println("Name: " + getName());
+        System.out.println("Age: " + getAge());
+        System.out.println("Gender: " + getGender());
+        System.out.println("Faculty ID: " + facultyId);
+        System.out.println("Department: " + department);
+    }
+}
+public class AbstractPersonDemo {
+    public static void main(String[] args) {
+        Person2 student = new Student2("Alice", 20, "Female", "1234", "Computer Science");
+        student.displayInfo();
+
+        System.out.println();
+
+        Person2 faculty = new Faculty2("Bob", 35, "Male", "5678", "Mathematics");
+        faculty.displayInfo();
+    }
+}
+2.	Write a program to demonstrate the usage of try and associated keywords. Introduce bugs into the program to raise exceptions and then catch and process them.
+Sample Answer : 
+package com.cvr.labprograms;
+import java.util.Scanner;
+
+public class ExceptionDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        try {
+            int num = scanner.nextInt();
+            int result = 100 / num;
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("An arithmetic error occurred: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        } finally {
+            System.out.println("Program finished");
+        }
+    }
+}

@@ -1,0 +1,112 @@
+Set 8 :
+1.	To illustrate the concept of inheritance, write a java program using the hierarchy of employees in an university.
+
+Sample Answer : 
+
+package com.cvr.labprograms;
+
+class UniversityEmployee {
+
+    private String name;
+    private int age;
+    private String department;
+
+    public UniversityEmployee(String name, int age, String department) {
+        this.name = name;
+        this.age = age;
+        this.department = department;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String toString() {
+        return "Name: " + getName() + ", Age: " + getAge() + ", Department: " + getDepartment();
+    }
+}
+
+class Faculty extends UniversityEmployee {
+
+    private String specialization;
+
+    public Faculty(String name, int age, String department, String specialization) {
+        super(name, age, department);
+        this.specialization = specialization;
+    }
+
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public String toString() {
+        return super.toString() + ", Specialization: " + getSpecialization();
+    }
+}
+
+class Staff extends UniversityEmployee {
+
+    private String role;
+
+    public Staff(String name, int age, String department, String role) {
+        super(name, age, department);
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public String toString() {
+        return super.toString() + ", Role: " + getRole();
+    }
+}
+
+public class InheritanceDemo {
+
+    public static void main(String[] args) {
+        Faculty faculty = new Faculty("John Doe", 40, "Computer Science", "Database Systems");
+        Staff staff = new Staff("Jane Smith", 35, "Student Services", "Admissions Coordinator");
+
+        System.out.println(faculty.toString());
+        System.out.println(staff.toString());
+    }
+}
+
+
+2.	Write a java program to show the assignment of thread priorities.
+
+Sample Answer :
+
+package com.cvr.labprograms;
+
+public class ThreadPriorityExample {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyRunnable(), "Thread 1");
+        Thread t2 = new Thread(new MyRunnable(), "Thread 2");
+        Thread t3 = new Thread(new MyRunnable(), "Thread 3");
+
+        t1.setPriority(Thread.MIN_PRIORITY);
+        t2.setPriority(Thread.NORM_PRIORITY);
+        t3.setPriority(Thread.MAX_PRIORITY);
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+
+    static class MyRunnable implements Runnable {
+        public void run() {
+            System.out.println(Thread.currentThread().getName() + " is running with priority " + Thread.currentThread().getPriority());
+        }
+    }
+}
+

@@ -1,0 +1,96 @@
+Set 10 :
+1.	Write a java program to understand polymorphic invocation of methods, while overriding the methods. Use an employee base class and manager sub class, override the computeSalary() method to illustrate the concept.
+
+Sample Answer : 
+
+package com.cvr.labprograms;
+class MNCEmployee {
+    public double computeSalary() {
+        return 0.0;
+    }
+}
+
+class Manager extends MNCEmployee {
+    @Override
+    public double computeSalary() {
+        return 50000.0;
+    }
+}
+
+public class PolymorphismDemo {
+    public static void main(String[] args) {
+        MNCEmployee emp = new MNCEmployee();
+        Manager mgr = new Manager();
+        
+        System.out.println("Employee salary: " + emp.computeSalary());
+        System.out.println("Manager salary: " + mgr.computeSalary());
+        
+        emp = mgr; // assign Manager object to Employee reference variable
+        System.out.println("Employee salary after assignment: " + emp.computeSalary());
+    }
+}
+
+2.	Write a java program that explains full capability of  StringBuffer and StringBuilder library classes.
+Sample Answer :
+
+package com.cvr.labprograms;
+
+public class StringBufferStringBuilderDemo {
+    public static void main(String[] args) {
+        // Create a StringBuffer object
+        StringBuffer sb = new StringBuffer("Hello");
+
+        // Append some text to the StringBuffer
+        sb.append(" world");
+
+        // Insert some text into the StringBuffer
+        sb.insert(5, ", ");
+
+        // Replace some text in the StringBuffer
+        sb.replace(5, 7, "there");
+
+        // Reverse the StringBuffer
+        sb.reverse();
+
+        // Get the length and capacity of the StringBuffer
+        int length = sb.length();
+        int capacity = sb.capacity();
+
+        // Convert the StringBuffer to a String
+        String str = sb.toString();
+
+        // Print the StringBuffer and its properties
+        System.out.println("StringBuffer: " + sb);
+        System.out.println("Length: " + length);
+        System.out.println("Capacity: " + capacity);
+        System.out.println("String: " + str);
+
+        // Create a StringBuilder object
+        StringBuilder sbu = new StringBuilder("Java");
+
+        // Append some text to the StringBuilder
+        sbu.append(" programming");
+
+        // Insert some text into the StringBuilder
+        sbu.insert(4, " is a");
+
+        // Replace some text in the StringBuilder
+        sbu.replace(7, 10, "good");
+
+        // Reverse the StringBuilder
+        sbu.reverse();
+
+        // Get the length and capacity of the StringBuilder
+        int len = sbu.length();
+        int cap = sbu.capacity();
+
+        // Convert the StringBuilder to a String
+        String string = sbu.toString();
+
+        // Print the StringBuilder and its properties
+        System.out.println("StringBuilder: " + sbu);
+        System.out.println("Length: " + len);
+        System.out.println("Capacity: " + cap);
+        System.out.println("String: " + string);
+    }
+}

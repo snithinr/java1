@@ -1,0 +1,115 @@
+Set 14 : 
+
+1.	Write a program to understand the full capability of String class. Implement as many methods as required.
+
+Sample Answer : 
+package com.cvr.labprograms;
+
+public class StringDemo {
+    public static void main(String[] args) {
+        // Create a new string using a string literal
+        String str1 = "Hello, World!";
+        System.out.println("str1: " + str1);
+        // Create a new string using the String constructor
+        char[] chars = { 'H', 'e', 'l', 'l', 'o' };
+        String str2 = new String(chars);
+        System.out.println("str2: " + str2);
+        // Concatenate two strings using the + operator
+        String str3 = str1 + " " + str2;
+        System.out.println("str3: " + str3);
+
+        // Get the length of a string using the length() method
+        int length = str3.length();
+        System.out.println("Length: " + length);
+
+        // Check if a string contains a substring using the contains() method
+        boolean contains = str3.contains("World");
+        System.out.println("Contains 'World': " + contains);
+
+        // Get a substring using the substring() method
+        String substring = str3.substring(7, 12);
+        System.out.println("Substring: " + substring);
+
+        // Convert a string to uppercase using the toUpperCase() method
+        String uppercase = str3.toUpperCase();
+        System.out.println("Uppercase: " + uppercase);
+
+        // Convert a string to lowercase using the toLowerCase() method
+        String lowercase = str3.toLowerCase();
+        System.out.println("Lowercase: " + lowercase);
+
+        // Replace all occurrences of a character using the replace() method
+        String replaced = str3.replace('o', '0');
+        System.out.println("Replaced: " + replaced);
+
+        // Split a string into an array using the split() method
+        String[] parts = str3.split(",");
+        System.out.print("Parts: ");
+        for (String part : parts) {
+            System.out.print(part.trim() + " ");
+        }
+        System.out.println();
+
+        // Convert a string to an integer using the parseInt() method
+        String numStr = "12345";
+        int num = Integer.parseInt(numStr);
+        System.out.println("Num: " + num);
+    }
+}
+
+
+2.	Use the core methods of Thread class to write a program to learn the nature of execution of threads.
+Sample Answer : 
+package com.cvr.labprograms;
+
+public class ThreadExecutionDemo {
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyRunnable(), "Thread 1");
+        Thread t2 = new Thread(new MyRunnable(), "Thread 2");
+
+        // Start the threads
+        t1.start();
+        t2.start();
+
+        // Set the priority of threads
+        t1.setPriority(Thread.MIN_PRIORITY);
+        t2.setPriority(Thread.MAX_PRIORITY);
+
+        // Check if threads are alive or not
+        if (t1.isAlive()) {
+            System.out.println(t1.getName() + " is still running.");
+        }
+
+        if (t2.isAlive()) {
+            System.out.println(t2.getName() + " is still running.");
+        }
+
+        // Yield to other threads
+        Thread.yield();
+
+        // Wait for threads to complete
+        try {
+            t1.join();
+            t2.join();
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted while waiting for threads to complete.");
+        }
+
+        System.out.println("All threads have completed.");
+    }
+}
+
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(Thread.currentThread().getName() + " is running.");
+            Thread.yield(); // Yield to other threads
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Thread interrupted while sleeping.");
+            }
+        }
+    }
+}

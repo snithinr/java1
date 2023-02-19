@@ -1,0 +1,112 @@
+Set 12 :
+1.	Write a program to demonstrate the usage of interfaces.
+Sample Answer :
+package com.cvr.labprograms;
+//Define an interface for a Shape
+interface Shape {
+ double getArea();
+ double getPerimeter();
+}
+
+//Define a class for a Circle that implements the Shape interface
+class Circle implements Shape {
+ private double radius;
+
+ public Circle(double radius) {
+     this.radius = radius;
+ }
+
+ public double getArea() {
+     return Math.PI * radius * radius;
+ }
+
+ public double getPerimeter() {
+     return 2 * Math.PI * radius;
+ }
+}
+
+//Define a class for a Rectangle that implements the Shape interface
+class Rectangle implements Shape {
+ private double width;
+ private double height;
+
+ public Rectangle(double width, double height) {
+     this.width = width;
+     this.height = height;
+ }
+
+ public double getArea() {
+     return width * height;
+ }
+
+ public double getPerimeter() {
+     return 2 * (width + height);
+ }
+}
+
+//Use the Shape interface to calculate the areas and perimeters of different shapes
+public class InterfaceDemo {
+ public static void main(String[] args) {
+     Shape circle = new Circle(5);
+     System.out.println("Circle area: " + circle.getArea());
+     System.out.println("Circle perimeter: " + circle.getPerimeter());
+
+     Shape rectangle = new Rectangle(4, 6);
+     System.out.println("Rectangle area: " + rectangle.getArea());
+     System.out.println("Rectangle perimeter: " + rectangle.getPerimeter());
+ }
+}
+
+2.	Write a program to show the power of Serialization.
+Sample Answer :
+package com.cvr.labprograms;
+import java.io.*;
+
+class Person implements Serializable {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String toString() {
+        return "Name: " + name + ", Age: " + age;
+    }
+}
+
+public class SerializationDemo {
+    public static void main(String[] args) {
+        Person person = new Person("John Doe", 30);
+
+        // Serialize the object to a file
+        try {
+            FileOutputStream fileOut = new FileOutputStream("person.ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(person);
+            out.close();
+            fileOut.close();
+            System.out.println("Serialized data is saved in person.ser");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Deserialize the object from the file
+        Person personDeserialized = null;
+        try {
+            FileInputStream fileIn = new FileInputStream("person.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            personDeserialized = (Person) in.readObject();
+            in.close();
+            fileIn.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Print the deserialized object
+        System.out.println("Deserialized data: " + personDeserialized);
+    }
+}

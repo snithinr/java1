@@ -1,0 +1,170 @@
+Set 2 : 
+1.	Write a program to check and print the grade of a student when the score is given as an integer. Use a switch statement. Rewrite the program to use a sequence of if-elsestatements.
+Sample Answer :
+Using Switch: 
+package com.cvr.labprograms;
+
+public class GradeCheckerSwitch {
+
+    public static void main(String[] args) {
+        int score = 80;
+        String grade;
+
+        switch (score / 10) {
+            case 10:
+            case 9:
+                grade = "A";
+                break;
+            case 8:
+                grade = "B";
+                break;
+            case 7:
+                grade = "C";
+                break;
+            case 6:
+                grade = "D";
+                break;
+            default:
+                grade = "F";
+                break;
+        }
+
+        System.out.println("Grade: " + grade);
+    }
+}
+Using if - else 
+
+package com.cvr.labprograms;
+
+public class GradeCheckerIfElse {
+
+    public static void main(String[] args) {
+        int score = 80;
+        String grade;
+
+        if (score >= 90) {
+            grade = "A";
+        } else if (score >= 80) {
+            grade = "B";
+        } else if (score >= 70) {
+            grade = "C";
+        } else if (score >= 60) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        System.out.println("Grade: " + grade);
+    }
+}
+
+2.	Develop an application that uses inheritance. Use the class Account and then subclass it into different account types. Then making use of Customer and Employee classes to develop the application to reflect the nature of banking operations. Use minimum operational sequence.
+Sample Answer
+package com.cvr.labprograms;
+
+class Account {
+    private String accountNumber;
+    private double balance;
+    private Customer customer;
+
+    public Account(String accountNumber, double balance, Customer customer) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+        this.customer = customer;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        balance -= amount;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+class SavingsAccount extends Account {
+    private double interestRate;
+
+    public SavingsAccount(String accountNumber, double balance, Customer customer, double interestRate) {
+        super(accountNumber, balance, customer);
+        this.interestRate = interestRate;
+    }
+
+    public void addInterest() {
+        double interest = getBalance() * interestRate;
+        deposit(interest);
+    }
+}
+
+class CheckingAccount extends Account {
+    private double overdraftLimit;
+
+    public CheckingAccount(String accountNumber, double balance, Customer customer, double overdraftLimit) {
+        super(accountNumber, balance, customer);
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= getBalance() + overdraftLimit) {
+            super.withdraw(amount);
+        } else {
+            System.out.println("Insufficient funds");
+        }
+    }
+}
+class Customer {
+    private String name;
+    private String address;
+
+    public Customer(String name, String address) {
+        this.name = name;
+        this.address = address;
+    }
+}
+
+class Employee {
+    private String name;
+    private String employeeId;
+
+    public Employee(String name, String employeeId) {
+        this.name = name;
+        this.employeeId = employeeId;
+    }
+
+    public void processDeposit(Account account, double amount) {
+        account.deposit(amount);
+    }
+
+    public void processWithdrawal(Account account, double amount) {
+        account.withdraw(amount);
+    }
+}
+
+public class BankApplication {
+    public static void main(String[] args) {
+        Customer customer = new Customer("John Doe", "123 Main St");
+        SavingsAccount savingsAccount = new SavingsAccount("123456", 1000.0, customer, 0.01);
+        CheckingAccount checkingAccount = new CheckingAccount("654321", 500.0, customer, 100.0);
+
+        Employee employee = new Employee("Jane Smith", "E12345");
+        employee.processDeposit(savingsAccount, 100.0);
+        employee.processWithdrawal(checkingAccount, 200.0);
+
+        savingsAccount.addInterest();
+
+        System.out.println("Savings account balance: " + savingsAccount.getBalance());
+        System.out.println("Checking account balance: " + checkingAccount.getBalance());
+    }
+}
+
+
+
+
+
+
+
+

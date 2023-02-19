@@ -1,0 +1,93 @@
+SET 1:
+1.	Write a JAVA program to implement the different types of operators, to perform the following tasks: comparison of values, simple arithmetic, bit-wise operations.
+Sample Answer:
+	package com.cvr.labprograms;
+public class OperatorsDemo {
+      public static void main(String[] args) {
+        // Comparison Operators
+        int x = 5;
+        int y = 10;
+        System.out.println(x < y);  // true
+        System.out.println(x == y); // false
+        System.out.println(x != y); // true
+
+        // Simple Arithmetic Operators
+        int a = 10;
+        int b = 3;
+        int sum = a + b;
+        int difference = a - b;
+        int product = a * b;
+        int quotient = a / b;
+        int remainder = a % b;
+        System.out.println(sum); // 13
+        System.out.println(difference); // 7
+        System.out.println(product); // 30
+        System.out.println(quotient); // 3
+        System.out.println(remainder); // 1
+
+        // Bitwise Operators
+        int p = 3; // 0011
+        int q = 5; // 0101
+        int and = p & q; // 0001
+        int or = p | q; // 0111
+        int xor = p ^ q; // 0110
+        int compliment = ~p; // 1100
+        int leftShift = p << 2; // 1100
+        int rightShift = p >> 1; // 0001
+        System.out.println(and); // 1
+        System.out.println(or); // 7
+        System.out.println(xor); // 6
+        System.out.println(compliment); // -4
+        System.out.println(leftShift); // 12
+        System.out.println(rightShift); // 1
+    }
+}
+
+
+
+
+2.	Write a program to understand nested classes.
+Sample Answer: 
+package com.cvr.labprograms;
+   public class OuterClass {
+     	private int outerValue = 10;
+    	// Inner class
+      	public class InnerClass {
+        public void display() {
+            System.out.println("Value from inner class: " + outerValue);
+        }
+     	}
+    // Static nested class
+    public static class StaticNestedClass {
+        private int nestedValue = 20;
+        public void display() {
+            System.out.println("Value from static nested class: " + nestedValue);
+        }
+    }
+
+    public static void main(String[] args) {
+        // Creating an object of the outer class
+        OuterClass outer = new OuterClass();
+
+        // Creating an object of the inner class
+        OuterClass.InnerClass inner = outer.new InnerClass();
+        inner.display();
+
+        // Creating an object of the static nested class
+        OuterClass.StaticNestedClass nested = new OuterClass.StaticNestedClass();
+        nested.display();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

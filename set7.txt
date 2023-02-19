@@ -1,0 +1,56 @@
+Set 7 :
+1.	Write a java program to understand method overloading.
+
+Sample Answer : 
+package com.cvr.labprograms;
+public class MethodOverloadingExample {
+
+    public static void main(String[] args) {
+        MethodOverloadingExample obj = new MethodOverloadingExample();
+        obj.print(5);
+        obj.print("Hello");
+        obj.print(2, 3);
+        obj.print(2.5, 3.5);
+    }
+
+    public void print(int num) {
+        System.out.println("The integer value is: " + num);
+    }
+
+    public void print(String message) {
+        System.out.println("The string message is: " + message);
+    }
+
+    public void print(int num1, int num2) {
+        System.out.println("The sum of the two integers is: " + (num1 + num2));
+    }
+
+    public void print(double num1, double num2) {
+        System.out.println("The product of the two doubles is: " + (num1 * num2));
+    }
+}
+2.	Write a java program to illustrate the usage of Custom Exceptions
+
+Sample Answer :
+
+package com.cvr.labprograms;
+public class CustomExceptionExample {
+
+    public static void main(String[] args) {
+        try {
+            int age = -5;
+            if (age < 0) {
+                throw new InvalidAgeException("Age cannot be negative");
+            }
+        } catch (InvalidAgeException ex) {
+            System.out.println("Caught Exception: " + ex.getMessage());
+        }
+    }
+
+    static class InvalidAgeException extends Exception {
+        InvalidAgeException(String message) {
+            super(message);
+        }
+    }
+}
+

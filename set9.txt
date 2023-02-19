@@ -1,0 +1,73 @@
+Set 9 : 
+
+1.	Write a java program that demonstrates the effect of modifiers while using inheritance and also demonstrates the usage of super ,final keyword in the same example  .
+
+Sample Answer 
+
+package com.cvr.labprograms;
+
+
+class Vehicle {
+    private String model;
+    protected int maxSpeed;
+
+    public Vehicle(String model, int maxSpeed) {
+        this.model = model;
+        this.maxSpeed = maxSpeed;
+    }
+
+    public void drive() {
+        System.out.println("Driving a " + model + " at max speed " + maxSpeed + " km/h");
+    }
+
+    protected void honk() {
+        System.out.println("Honking the " + model);
+    }
+}
+
+class Car extends Vehicle {
+    private final String color;
+
+    public Car(String model, int maxSpeed, String color) {
+        super(model, maxSpeed);
+        this.color = color;
+    }
+
+    public void display() {
+        System.out.println("This car is a " + color + " " + model + " with a max speed of " + maxSpeed + " km/h");
+    }
+}
+
+public class AccessModifiersDemo {
+    public static void main(String[] args) {
+        Car car = new Car("Toyota", 180, "red");
+        car.display();
+        car.drive();
+        // car.honk(); // error: The method honk() from the type Vehicle is not visible
+    }
+}
+3.	Write a program to check the characteristics of a file after getting the filename form the user.
+Sample Answer :
+
+import java.io.File;
+import java.util.Scanner;
+
+public class FileCharacteristics {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the file name: ");
+        String fileName = scanner.nextLine();
+        File file = new File(fileName);
+        if (file.exists()) {
+            System.out.println("File name: " + file.getName());
+            System.out.println("Absolute path: " + file.getAbsolutePath());
+            System.out.println("Size: " + file.length() + " bytes");
+            System.out.println("Readable: " + file.canRead());
+            System.out.println("Writable: " + file.canWrite());
+            System.out.println("Executable: " + file.canExecute());
+            System.out.println("Hidden: " + file.isHidden());
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+}
